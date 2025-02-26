@@ -9,10 +9,13 @@
                     <div class="card p-2 shadow-sm">
                         <img src="{{$product->image}}" width="100%" alt="">
                         {{-- create title clickable --}}
-                        <div class=""><a href="">{{$product->title}}</a> | <span>LKR {{$product->price}}</span></div> 
+                        <div class=""><a href="{{route("product.details",$product->slug)}}">{{$product->title}}</a> | <span>LKR {{$product->price}}</span></div> 
                     </div>
                 </div>
                 @endforeach            
+        </div>
+        <div class="">
+            {{$products->links()}}
         </div>
         </section>
 
