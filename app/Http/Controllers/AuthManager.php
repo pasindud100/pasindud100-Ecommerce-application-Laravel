@@ -21,9 +21,11 @@ class AuthManager extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if(Auth::attempt ($credentials)){
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('home'))
+            ->with("success", "You have been login successfully");
+       
         }
-        return redirect('login')->with("eror","Invalid email or password");
+        return redirect(route('login'))->with("erorr","Invalid email or password");
     }
 
     function register(){
