@@ -1,15 +1,18 @@
 <?php
 
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\ProductManager;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("home");
+Route::get('/', [ProductManager::class,"index"])
+->name("home");
 
-Route::get('/home', function () {
-    return view('welcome');
-});
+Route::get('/home', [ProductManager::class,"index"])
+->name("home");
+
+
+Route::get("logout",[AuthManager::class, "logout"])
+    ->name("logout");
 
 Route::get("login",[AuthManager::class, "login"])
     ->name("login");

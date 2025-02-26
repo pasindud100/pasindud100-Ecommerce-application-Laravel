@@ -14,6 +14,11 @@ class AuthManager extends Controller
         return view('auth.login');
     }
 
+    function logout(){
+        Auth::logout();
+        return redirect("login");
+    }
+
     function loginPost( Request $request){
         $request->validate([
             'email' => 'required',
