@@ -28,8 +28,16 @@
     <form method="POST" action="" >
         @csrf
         <img class="mb-4 " src="{{asset("assets/img/login.jpeg")}}" alt="" width="72" height="57"/>
-        <h1 class="h3 mb-3 fw-normal">Please Sign in</h1>
+        <h1 class="h3 mb-3 fw-normal">Please Sign Up</h1>
 
+
+        <div class="form-floating">
+            <input type="text" name="name" class="form-control" id="floatingInput" placeholder="Enter name">
+            <label for="floatingInput "> Enter name</label>
+            @error('name')
+                <span class="text-denger">{{$message}}</span>
+            @enderror
+        </div>
         <div class="form-floating">
             <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput "> Email address</label>
@@ -44,10 +52,7 @@
                 <span class="text-denger">{{$message}}</span>
             @enderror
         </div>
-        <div class="form-check text-start my-3">
-            <input type="checkbox" name="rememberme" class="form-ckeck-input" value="remember-me" id="flexCheckDefault">
-            <label for="flexCheckDefault" class="form-check-lable"> Remember me</label>
-        </div>
+       
         @if(session()->has("success"))
             <div class="alert alert-success">
                 {{session()->get("success")}}
@@ -59,9 +64,9 @@
             </div>
         @endif
             <button class="btn btn-primary w-100 py-2 " type="submit">
-                Sign in
+                Sign Up
             </button>
-            <a href="" class="text-center">Create new account </a>
+            <a href="" class="text-center">Login here </a>
             <p class="mt-5 mb-3 text-body-secondary"> &copy; 2017-2025</p>
     </form>
 </main>
