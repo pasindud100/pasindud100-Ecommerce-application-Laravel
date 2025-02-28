@@ -27,10 +27,14 @@ Route::post("register",[AuthManager::class, "registerPost"])
     ->name("register.post");
 
 Route::get("/product/{slug}",[ProductManager::class,"details"])
-    ->name("product.details");
+    ->name("products.details");
 
     //add middleware..the cart functionality work only for logged users. in not logged user he redirect to login page when click add to cart btn
 Route::middleware("auth")->group(function(){
     Route::get("/cart/{id}",[ProductManager::class,"addToCart"])
     ->name("cart.add");
+
+    Route::get("/cart",[ProductManager::class,"showCart"])
+    ->name("cart.show");
 });
+
