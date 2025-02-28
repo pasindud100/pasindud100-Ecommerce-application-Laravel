@@ -43,7 +43,7 @@ class ProductManager extends Controller
             ->join("products", "cart.product_id", '=', 'products.id')
             ->select(
                 "cart.product_id",
-                DB::raw("count(*) as quentity"),
+                DB::raw("count(*) as quantity"),
                 'products.title',
                 'products.price',
                 'products.image',

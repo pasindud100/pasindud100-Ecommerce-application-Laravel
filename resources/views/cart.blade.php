@@ -4,6 +4,16 @@
     <main class="container" style="max-width:900px">
         <section>
             <div class="row">
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 @foreach ($cartItems as $cart)
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
@@ -15,7 +25,7 @@
                                     <h5 class="card-title"><a
                                             href="{{ route('products.details', $cart->slug) }}">{{ $cart->title }}</a> |
                                     </h5>
-                                    <p class="card-text"> <span>LKR {{ $cart->price }}</span></p>
+                                    <p class="card-text"> <span>Price: LKR{{ $cart->price }} | Quantity: {{$cart->quantity}}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -24,6 +34,9 @@
             </div>
             <div>
                 {{ $cartItems->links() }}
+            </div>
+            <div>
+                <a class="btn btn-success" href="{{ route('checkout.show') }}">Checkout</a>
             </div>
         </section>
     </main>

@@ -52,7 +52,6 @@
             <div class="alert alert-success">
                 {{session()->get("success")}}
             </div>
-        
         @endif
         @if(session("error"))
             <div class="alert alert-danger">
