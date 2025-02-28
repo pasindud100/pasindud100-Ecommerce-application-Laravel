@@ -25,7 +25,7 @@
                                     <h5 class="card-title"><a
                                             href="{{ route('products.details', $cart->slug) }}">{{ $cart->title }}</a> |
                                     </h5>
-                                    <p class="card-text"> <span>Price: LKR{{ $cart->price }} | Quantity: {{$cart->quantity}}</span></p>
+                                    <p class="card-text"> <span>Price: LKR{{  $cart->price }} | Quantity: {{$cart->quantity}}</span></p>
                                 </div>
                             </div>
                         </div>

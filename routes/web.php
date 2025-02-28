@@ -41,5 +41,12 @@ Route::middleware("auth")->group(function () {
 
     Route::post("/checkout", [OrderManager::class, "checkoutPost"])
         ->name("checkout.post");
+
+    Route::get("/payment/success", [OrderManager::class, "paymentSuccess"])
+        ->name("payment.success");
+
+    Route::get("/payment/error", [OrderManager::class, "paymentError"])
+        ->name("payment.error");
+
 });
 

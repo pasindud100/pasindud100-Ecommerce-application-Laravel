@@ -18,8 +18,9 @@ return new class extends Migration {
             $table->float('total_price');
             $table->string('address');
             $table->string('pincode');
-            $table->integer('phone');
-            $table->boolean('status')->nullable();
+            $table->string('phone');
+            $table->string('payment_id')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
