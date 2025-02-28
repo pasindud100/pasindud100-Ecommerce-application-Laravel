@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\orders;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stripe\StripeClient;
@@ -98,5 +99,28 @@ class OrderManager extends Controller
     function paymentSuccess($order_id)
     {
         return "success " . $order_id;
+    }
+
+    function orderHistory()
+    {
+        $orders = orders::where("user_id", auth()->user()->id)->get();
+
+        $orders = $orders->map(function ($order) {
+            $productIds = json_decode($order->product_id, true);
+            $quantities = json_decode($order->quantity, true);
+
+            $products = Products::whereIn('id', $productIds)->get();
+
+            $order->product_details = $products->map(function ($product) use ($quantities, $productIds) {
+                $index = array_search($product->id, $productIds);
+                return [
+                    'name' => $product->title,
+                    'quantity' => $quantities[$index] ?? 0,
+                    'price' => $product->price
+                ];
+            });
+            return $order;
+        });
+        return view('history', compact('orders'));
     }
 }
