@@ -1,37 +1,49 @@
 @extends('layouts.default')
-@section('title', 'checkout')
+@section('title', 'Ecom - Home')
 @section('content')
-    <main class="container" style="max-width: 900px">
+    <main class="container" style="max-width:900px">
         <section>
-            <h2>Checkout</h2>
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session()->get('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-            <form action="{{ route('checkout.post') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="address" class="form-lable"> Address</label>
-                    <input type="text" class="form-control" id="address" name="address" required>
-                </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-lable"> Phone</label>
-                    <input type="text" class="form-control" id="phone" name="phone" required>
-                </div>
-                <div class="mb-3">
-                    <label for="pincode" class="form-lable">Pin Code</label>
-                    <input type="text" class="form-control" id="pincode" name="pincode" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    Proceed to Payment
-                </button>
-            </form>
+            <div class="row">
+                @if (session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                @foreach ($orders as $order)
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ $order->product_details[0]['image'] }}" class="img-fluid rounded-start"
+                                    alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Order Id: {{ $order->id }}</h5>
+                                    <p class="card-text">Payment ID: {{ $order->payment_id }}</p>
+                                    <p class="card-text">Total Price: {{ $order->total_price }}</p>
+                                    <h6>Products:</h6>
+                                    <ul>
+                                        @foreach ($order->product_details as $product)
+                                            <li>
+                                                <a href="{{ route('products.details', $product['slug']) }}">
+                                                    {{ $product['name'] }}
+                                                </a>
+                                                - Quantity: {{ $product['quantity'] }} - Price:
+                                                ${{ $product['price'] }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </section>
     </main>
+@endsection

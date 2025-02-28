@@ -11,14 +11,14 @@
 </head>
 {{-- default blade layout .this for other pages after and before login ..not in register and login page --}}
 
-<body>
+<body style="margin-top: 70px; background-color:white;">
     @include('includes.header')
     @yield('content')
     @include('includes.footer')
+
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     @yield('script')
-
-
 </body>
+
 
 </html>

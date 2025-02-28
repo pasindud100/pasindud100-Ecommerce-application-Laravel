@@ -103,9 +103,9 @@ class OrderManager extends Controller
 
     function orderHistory()
     {
-        $orders = orders::where("user_id", auth()->user()->id)->get();
+        $orders = Orders::where("user_id", auth()->user()->id)->orderBy('id', 'DESC')->paginate(3);
 
-        $orders = $orders->map(function ($order) {
+        $orders->getCollection()->transform(function($order){
             $productIds = json_decode($order->product_id, true);
             $quantities = json_decode($order->quantity, true);
 
@@ -116,11 +116,14 @@ class OrderManager extends Controller
                 return [
                     'name' => $product->title,
                     'quantity' => $quantities[$index] ?? 0,
-                    'price' => $product->price
+                    'price' => $product->price,
+                    'slug' => $product->slug,
+                    'image' => $product->image,
                 ];
             });
             return $order;
         });
+
         return view('history', compact('orders'));
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section("title","Ecom - Home")
 @section("content")
-    <main class="container" style="max-width:900px">
+    <main class="container " style="max-width:900px">
         <section>
             <img src="{{$product->image}}" width="100%" alt="">
             @if(session()->has("success"))
