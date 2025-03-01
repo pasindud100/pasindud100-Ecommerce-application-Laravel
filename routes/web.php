@@ -9,12 +9,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProductManager::class, "index"])
     ->name("home");
 
-
-Route::get("logout", [AuthManager::class, "logout"])
-    ->name("logout");
-
 Route::get("login", [AuthManager::class, "login"])
     ->name("login");
+    
+Route::get("logout", [AuthManager::class, "logout"])
+->name("logout");
 
 Route::post("login", [AuthManager::class, "loginPost"])
     ->name("login.post");

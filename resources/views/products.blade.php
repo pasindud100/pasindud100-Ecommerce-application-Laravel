@@ -30,4 +30,6 @@
             </div>
         </section>
     </main>
+    @include('includes.footerForHome')
+
 @endsection

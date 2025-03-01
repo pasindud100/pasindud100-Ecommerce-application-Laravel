@@ -34,4 +34,6 @@
                 </button>
             </form>
         </section>
+        @include('includes.footerForOthe')
+
     </main>
