@@ -14,7 +14,7 @@
         .form-signin {
             width: 100%;
             padding: 30px 80px;
-            
+
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -57,7 +57,7 @@
             <div class="text-center">
                 <img class="mb-3 rounded-circle" src="{{ asset('assets/img/login.jpeg') }}" alt="" width="100"
                     height="80" />
-                <h1 class="h4 mb-3 fw-bold">Sign in to Your Account</h1>
+                <h1 class="h4 mb-3 fw-bold">Sign in</h1>
             </div>
 
             <div class="form-floating mb-3">
@@ -78,14 +78,10 @@
                 @enderror
             </div>
 
-            <div class="form-check mb-3">
+            {{-- <div class="form-check mb-3">
                 <input type="checkbox" name="rememberme" class="form-check-input" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">Remember me</label>
-            </div>
-
-            @if (session()->has('success'))
-                <div class="alert alert-success">{{ session()->get('success') }}</div>
-            @endif
+            </div> --}}
 
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
@@ -94,10 +90,10 @@
             <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
 
             <div class="text-center mt-3">
-                <a href="{{ route('register') }}" class="text-decoration-none">Create new account</a>
+                <p> Don’t have an account? <a href="{{ route('register') }}"
+                        class="text-decoration-none text-muted">Signup</a>
+                </p>
             </div>
-
-            <p class="mt-4 text-center text-muted">&copy; 2017-2025</p>
         </form>
     </main>
 @endsection
